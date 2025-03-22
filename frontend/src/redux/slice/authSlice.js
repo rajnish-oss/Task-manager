@@ -85,14 +85,8 @@
         })
         .addCase(registerUser.fulfilled,(state,action)=>{
             state.status = "succeeded";
-            const updatedUser = action.payload.user;
-            const usersss = action.payload
-            console.log(usersss)
-            if(state.user && state.user._id !== updatedUser._id){
-                state.user = updatedUser
-            }
-
-            localStorage.setItem("userInfo", JSON.stringify(updatedUser));
+            state.user = action.payload.user;
+            localStorage.setItem("userInfo", JSON.stringify(action.payload.user));
             localStorage.setItem("token", action.payload.token);
         })
         .addCase(registerUser.rejected,(state,action)=>{
